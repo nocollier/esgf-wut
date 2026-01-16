@@ -1,14 +1,22 @@
 
-# esgf-magic
+# esgf-wut
 
-This is a package that queries (and builds) a simple ESGF control vocabulary database to populate search facets. We intend this functionality to be used as a middle layer to be fed into some other discovery tool.
+A package for assisting 
 
-## Commandline interface `esm`
+As a first pass, this package provides a commandline and python interface into a database query, mapping facet terms to their collections and projects. We are working on expanding to include a 
 
-The package provides a command `esm` which you can use to type control vocabulary (CV) terms and search to what collections/projects they belong. Just call the command and start typing CV terms separated with spaces.
+## Why 'wut'?
+
+Especially for new users, ESGF control vocabulary is hard to understand. We use the internet slang [wut](https://www.urbandictionary.com/define.php?term=wut) to pay homage to the generations of researchers who have frustratedly searched for climate data.
+
+## Usage
+
+### Commandline interface
+
+The package provides a command `wut` which you can use to type control vocabulary (CV) terms and search to what collections/projects they belong. Just call the command and start typing CV terms separated with spaces.
 
 ```bash
-$ esm gpp canesm5 historical ssp585 mon
+$ wut gpp canesm5 historical ssp585 mon
                                                TermName
 ProjectName CollectionName                             
 CMIP3       experiment                       historical
@@ -28,10 +36,10 @@ input4MIPs  frequency                               mon
 obs4MIPs    frequency                               mon
 ```
 
-By default, `esm` will return results across all supported projects. This can be useful for finding connections between terms and collections across projects. The search is case insensitive, can include wildcards, and will ignore terms that are not in a vocabulary.
+By default, `wut` will return results across all supported projects. This can be useful for finding connections between terms and collections across projects. The search is case insensitive, can include wildcards, and will ignore terms that are not in a vocabulary.
 
 ```bash
-$ esm tAs* not_a_term
+$ wut tAs* not_a_term
                                                                                      TermName
 ProjectName CollectionName                                                                   
 CMIP3       variable                                                    [tas, tasmin, tasmax]
@@ -43,24 +51,24 @@ input4MIPs  variable_id                                                         
 obs4MIPs    variable_id                                                                   tas
 ```
 
-Note that `esm` only queries a CV database. These projects/collections/terms may not return any dataset results if used to search a supported ESGF index. There are a couple relevant options:
+Note that `wut` only queries a CV database. These projects/collections/terms may not return any dataset results if used to search a supported ESGF index. There are a couple relevant options:
 
 - `--project`: used to return results from only the specified project
 - `--format`: used to change the output format (`json` or `yaml`)
 
 ```bash
-$ esm gpp canesm5 historical ssp585 mon --project cmip6 --format json
+$ wut gpp canesm5 historical ssp585 mon --project cmip6 --format json
 {"CMIP6": {"experiment_id": ["historical", "ssp585"], "frequency": "mon", "source_id": "CanESM5", "variable_id": "gpp"}}
 ```
 
 The idea is that this utility could be used to let users type terms and then use the results to populate actual searches of an ESGF index node.
 
-## From within python
+### Python interface
 
 If you use python as a backend in your ESGF tool, you could use packages functions directly.
 
 ```python
-from esgf_magic import query_cv_universe,query_df_to_dict
+from esgf_wut import query_cv_universe,query_df_to_dict
 
 # the query is passed out as a multi-index pandas DataFrame
 terms = "tas cesm*"
@@ -85,3 +93,4 @@ query_df_to_dict(df)
   }
 }
 ```
+

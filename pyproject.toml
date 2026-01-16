@@ -1,5 +1,5 @@
 [project]
-name = "esgf-magic"
+name = "esgf-wut"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -16,16 +16,16 @@ build-backend = "setuptools.build_meta"
 requires = ["setuptools>=42", "setuptools-scm>=7"]
 
 [tool.setuptools]
-packages = ["esgf_magic"]
+packages = ["esgf_wut"]
 
 [tool.setuptools_scm]
 version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"
 fallback_version = "0.0.0"
-write_to = "esgf_magic/_version.py"
+write_to = "esgf_wut/_version.py"
 
 [tool.setuptools.package-data]
 esgf_magic = ["data/*"]
 
 [project.scripts]
-esm = "esgf_magic.cli:app"
+wut = "esgf_wut.cli:app"

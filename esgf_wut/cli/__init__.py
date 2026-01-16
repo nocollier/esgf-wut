@@ -5,10 +5,10 @@ from typing import Literal, Optional
 import typer
 import yaml
 
-import esgf_magic as esm
+import esgf_wut as wut
 
 app = typer.Typer(
-    name="esm",
+    name="wut",
     no_args_is_help=True,
     add_completion=False,
 )
@@ -23,14 +23,14 @@ def query(
     regen_database: bool = False,
     format: Literal["pandas", "json", "yaml"] = "pandas",
 ):
-    database_file = importlib.resources.files("esgf_magic.data") / "esgf_cv_universe.db"
+    database_file = importlib.resources.files("esgf_wut.data") / "esgf_cv_universe.db"
     if regen_database and database_file.is_file():
         database_file.unlink()
-    out = esm.query_cv_universe(terms, project)
+    out = wut.query_cv_universe(terms, project)
     if format == "pandas":
         print(out.to_string())
     else:
-        out = esm.query_df_to_dict(out)
+        out = wut.query_df_to_dict(out)
         if format == "json":
             print(json.dumps(out))
         elif format == "yaml":

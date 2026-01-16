@@ -1,4 +1,4 @@
-from esgf_magic.core import (
+from esgf_wut.core import (
     create_cv_universe,
     ingest_by_esgvoc,
     ingest_by_facet_query,

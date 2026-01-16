@@ -9,11 +9,9 @@ import yaml
 
 
 def _get_database_file() -> Path:
-    database_file = importlib.resources.files("esgf_magic.data") / "esgf_cv_universe.db"
+    database_file = importlib.resources.files("esgf_wut.data") / "esgf_cv_universe.db"
     if not database_file.is_file():
-        yaml_file = (
-            importlib.resources.files("esgf_magic.data") / "database_facets.yaml"
-        )
+        yaml_file = importlib.resources.files("esgf_wut.data") / "database_facets.yaml"
         with open(yaml_file) as fin:
             facets_by_project = yaml.safe_load(fin)
         ingest_by_facet_query(database_file, facets_by_project)
