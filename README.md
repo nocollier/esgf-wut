@@ -1,9 +1,7 @@
 
 # esgf-wut
 
-A package for assisting 
-
-As a first pass, this package provides a commandline and python interface into a database query, mapping facet terms to their collections and projects. We are working on expanding to include a 
+A package in which we try to improve data discovery for the Earth System Grid Federation (ESGF). As a first pass, this package provides a command `wut` and python interface into a database query, mapping facet terms to their collections and projects. We are working on expanding this to include natural language processing to identify likely search parameters from a text prompt.
 
 ## Why 'wut'?
 

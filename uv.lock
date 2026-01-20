@@ -91,7 +91,6 @@ wheels = [
 
 [[package]]
 name = "esgf-wut"
-version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "pandas" },

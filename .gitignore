@@ -8,3 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Custom
+esgf_wut/_version.py
+.vscode

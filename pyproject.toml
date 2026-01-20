@@ -1,6 +1,5 @@
 [project]
 name = "esgf-wut"
-version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -10,22 +9,21 @@ dependencies = [
     "requests>=2.32.5",
     "typer>=0.19.2",
 ]
+dynamic = ["version"]
 
 [build-system]
+requires = ["setuptools", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
-requires = ["setuptools>=42", "setuptools-scm>=7"]
-
-[tool.setuptools]
-packages = ["esgf_wut"]
 
 [tool.setuptools_scm]
 version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"
 fallback_version = "0.0.0"
-write_to = "esgf_wut/_version.py"
+version_file = "esgf_wut/_version.py"
+version_file_template = '__version__ = "{version}"'
 
 [tool.setuptools.package-data]
-esgf_magic = ["data/*"]
+esgf_wut = ["data/*"]
 
 [project.scripts]
 wut = "esgf_wut.cli:app"
