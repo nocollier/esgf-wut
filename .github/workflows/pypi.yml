@@ -1,0 +1,25 @@
+name: Publish esgf-wut to PyPI
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    if: github.repository == 'nocollier/esgf-wut'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for all branches and tags.
+
+      - name: Install uv environment
+        uses: astral-sh/setup-uv@v4
+
+      - name: Build esgf-wut
+        run: uv build
+
+      - name: Publish to PyPI
+        run: uv publish --token ${{ secrets.PYPI_TOKEN }}
