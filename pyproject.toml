@@ -1,6 +1,6 @@
 [project]
 name = "esgf-wut"
-description = "Add your description here"
+description = "A middle layer for improving ESGF data discovery"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
